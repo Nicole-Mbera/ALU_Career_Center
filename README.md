@@ -2,7 +2,7 @@
 
 A comprehensive mobile application designed to bridge the gap between student talent and student-led startups within the African Leadership University (ALU) ecosystem. Built as the final project for the Mobile Development course.
 
-## 📖 Overview
+## Overview
 Many students struggle to secure internships, while student entrepreneurs need support building their businesses. ALU Ventures provides a secure, verified platform for startups to post opportunities and for students to discover and apply for roles that genuinely match their skill sets.
 
 ## Key Features
@@ -13,7 +13,7 @@ Many students struggle to secure internships, while student entrepreneurs need s
 * **Bookmarking:** Students can save opportunities for later viewing.
 * **Secure CV Uploads:** Students can upload PDF CVs that founders can securely view in-browser.
 
-## 🛠️ Tech Stack & Architecture
+##  Tech Stack & Architecture
 * **Frontend:** Flutter (Dart) using a custom Material 3 Emerald theme.
 * **State Management:** `Provider` (Selected for its seamless integration with continuous Firebase streams and performance scaling).
 * **Primary Backend:** Firebase (Authentication & Cloud Firestore) for real-time NoSQL CRUD operations.
