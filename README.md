@@ -1,11 +1,11 @@
-# ALU Ventures 🚀
+# ALU CAREER CENTER
 
 A comprehensive mobile application designed to bridge the gap between student talent and student-led startups within the African Leadership University (ALU) ecosystem. Built as the final project for the Mobile Development course.
 
 ## 📖 Overview
 Many students struggle to secure internships, while student entrepreneurs need support building their businesses. ALU Ventures provides a secure, verified platform for startups to post opportunities and for students to discover and apply for roles that genuinely match their skill sets.
 
-## ✨ Key Features
+## Key Features
 * **Role-Based Authentication:** Distinct, secure onboarding and dashboards for 'Students' and 'Founders'.
 * **Startup Verification:** Founders must upload a registration certificate to ensure platform trust and prevent spam.
 * **Skill Matching Engine:** A local algorithm that calculates a 0-100% match score between a student's profile and an opportunity's required skills.
@@ -19,7 +19,7 @@ Many students struggle to secure internships, while student entrepreneurs need s
 * **Primary Backend:** Firebase (Authentication & Cloud Firestore) for real-time NoSQL CRUD operations.
 * **Binary Storage:** Supabase Storage. (Integrated specifically to host heavy PDF/Image files, bypassing Firebase Storage pricing limits and ensuring scalable bandwidth).
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### Prerequisites
 * Flutter SDK (Latest Version)
@@ -46,11 +46,8 @@ Many students struggle to secure internships, while student entrepreneurs need s
 
 *(Note: The project requires `google-services.json` and `GoogleService-Info.plist` files connected to your own Firebase project if cloning from scratch).*
 
-## 🏗️ Architecture & Scalability Highlights
+## Architecture & Scalability Highlights
 * **Flat NoSQL Schema:** Ensures infinite horizontal scaling by keeping root collections separate rather than deeply nesting documents.
 * **Local Computing:** The matching engine runs on the client device rather than a Cloud Function, reducing server costs to zero.
 * **Surgical UI Rebuilds:** Utilizing `context.watch()`, the UI only rebuilds specific widgets that change, maintaining a buttery smooth 60 FPS experience.
 
----
-**Author:** Nicole Mbera
-**Course:** Mobile Development
