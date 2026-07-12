@@ -6,6 +6,7 @@ class UserModel {
   final String email;
   final String role; // 'student' | 'founder'
   final String campus; // 'Kigali' | 'Mauritius'
+  final String bio;
   final List<String> skills;
   final List<String> bookmarkedOppIds;
   final bool isAdmin;
@@ -17,6 +18,7 @@ class UserModel {
     required this.email,
     required this.role,
     required this.campus,
+    this.bio = '',
     required this.skills,
     this.bookmarkedOppIds = const [],
     this.isAdmin = false,
@@ -34,6 +36,7 @@ class UserModel {
       email: data['email'] ?? '',
       role: data['role'] ?? 'student',
       campus: data['campus'] ?? 'Kigali',
+      bio: data['bio'] ?? '',
       skills: List<String>.from(data['skills'] ?? []),
       bookmarkedOppIds: List<String>.from(data['bookmarkedOppIds'] ?? []),
       isAdmin: data['isAdmin'] ?? false,
@@ -47,19 +50,21 @@ class UserModel {
         'email': email,
         'role': role,
         'campus': campus,
+        'bio': bio,
         'skills': skills,
         'bookmarkedOppIds': bookmarkedOppIds,
         'isAdmin': isAdmin,
         'createdAt': Timestamp.fromDate(createdAt),
       };
 
-  UserModel copyWith({List<String>? skills}) {
+  UserModel copyWith({String? bio, List<String>? skills}) {
     return UserModel(
       uid: uid,
       name: name,
       email: email,
       role: role,
       campus: campus,
+      bio: bio ?? this.bio,
       skills: skills ?? this.skills,
       bookmarkedOppIds: bookmarkedOppIds,
       isAdmin: isAdmin,

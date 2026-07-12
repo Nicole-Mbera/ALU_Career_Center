@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppColors {
-  static const Color primary = Color(0xFFB71C1C);
-  static const Color secondary = Color(0xFFFFB300);
-  static const Color background = Color(0xFFFAFAFA);
+  static const Color primary = Color(0xFF10B981); // Emerald Green
+  static const Color secondary = Color(0xFF047857); // Dark Emerald
+  static const Color background = Color(0xFFF6FBF9); // Very light mint
   static const Color surface = Color(0xFFFFFFFF);
-  static const Color error = Color(0xFFD32F2F);
+  static const Color error = Color(0xFFE53E3E);
   static const Color onPrimary = Color(0xFFFFFFFF);
-  static const Color onSecondary = Color(0xFF000000);
-  static const Color onBackground = Color(0xFF1A1A1A);
-  static const Color onSurface = Color(0xFF1A1A1A);
-  static const Color textSecondary = Color(0xFF757575);
-  static const Color divider = Color(0xFFE0E0E0);
-  static const Color chipBackground = Color(0xFFF5F5F5);
+  static const Color onSecondary = Color(0xFFFFFFFF);
+  static const Color onBackground = Color(0xFF064E3B);
+  static const Color onSurface = Color(0xFF064E3B);
+  static const Color textSecondary = Color(0xFF475569);
+  static const Color divider = Color(0xFFE2E8F0);
+  static const Color chipBackground = Color(0xFFECFDF5);
 
   static const Color matchHigh = Color(0xFF388E3C);
   static const Color matchMid = Color(0xFFF57C00);

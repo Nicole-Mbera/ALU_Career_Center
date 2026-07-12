@@ -79,6 +79,7 @@ class StartupProvider extends ChangeNotifier {
     required String commitment,
     required String location,
     required String description,
+    required String benefits,
   }) async {
     if (_startup == null) return;
     final opp = OpportunityModel(
@@ -91,6 +92,7 @@ class StartupProvider extends ChangeNotifier {
       commitment: commitment,
       location: location,
       description: description,
+      benefits: benefits,
       status: _startup!.isVerified ? 'open' : 'draft',
       createdAt: DateTime.now(),
     );
@@ -105,6 +107,7 @@ class StartupProvider extends ChangeNotifier {
     required String commitment,
     required String location,
     required String description,
+    required String benefits,
   }) async {
     await _db.updateOpportunityFields(id, {
       'title': title,
@@ -113,6 +116,7 @@ class StartupProvider extends ChangeNotifier {
       'commitment': commitment,
       'location': location,
       'description': description,
+      'benefits': benefits,
     });
   }
 

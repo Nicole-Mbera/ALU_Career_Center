@@ -90,21 +90,31 @@ class OpportunityCard extends StatelessWidget {
                   const Icon(Icons.schedule,
                       size: 14, color: AppColors.textSecondary),
                   const SizedBox(width: 4),
-                  Text(
-                    opportunity.commitment,
-                    style: GoogleFonts.poppins(
-                        fontSize: 12, color: AppColors.textSecondary),
+                  Expanded(
+                    flex: 2,
+                    child: Text(
+                      opportunity.commitment,
+                      style: GoogleFonts.poppins(
+                          fontSize: 12, color: AppColors.textSecondary),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
-                  const SizedBox(width: 12),
+                  const SizedBox(width: 8),
                   const Icon(Icons.location_on,
                       size: 14, color: AppColors.textSecondary),
                   const SizedBox(width: 4),
-                  Text(
-                    opportunity.location,
-                    style: GoogleFonts.poppins(
-                        fontSize: 12, color: AppColors.textSecondary),
+                  Expanded(
+                    flex: 2,
+                    child: Text(
+                      opportunity.location,
+                      style: GoogleFonts.poppins(
+                          fontSize: 12, color: AppColors.textSecondary),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
-                  const Spacer(),
+                  const SizedBox(width: 8),
                   Text(
                     DateFormat('MMM d').format(opportunity.createdAt),
                     style: GoogleFonts.poppins(

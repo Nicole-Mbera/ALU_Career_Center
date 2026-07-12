@@ -16,11 +16,14 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   final _skillCtrl = TextEditingController();
+  final _bioCtrl = TextEditingController();
   final _db = FirestoreService();
+  bool _isEditingBio = false;
 
   @override
   void dispose() {
     _skillCtrl.dispose();
+    _bioCtrl.dispose();
     super.dispose();
   }
 
@@ -43,6 +46,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
     await _db.updateUserSkills(auth.user!.uid, skills);
     auth.refreshUser();
     context.read<OpportunityProvider>().updateStudentSkills(skills);
+  }
+
+  Future<void> _saveBio() async {
+    final auth = context.read<AuthProvider>();
+    if (auth.user == null) return;
+    await auth.updateProfile(bio: _bioCtrl.text.trim());
+    setState(() => _isEditingBio = false);
   }
 
   @override
@@ -114,6 +124,56 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ],
               ),
             ),
+
+            const SizedBox(height: 24),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Bio', style: Theme.of(context).textTheme.titleMedium),
+                if (!_isEditingBio)
+                  IconButton(
+                    icon: const Icon(Icons.edit, size: 20),
+                    onPressed: () {
+                      _bioCtrl.text = user?.bio ?? '';
+                      setState(() => _isEditingBio = true);
+                    },
+                  ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            if (_isEditingBio) ...[
+              TextField(
+                controller: _bioCtrl,
+                maxLines: 3,
+                decoration: const InputDecoration(
+                  hintText: 'Tell us a bit about yourself...',
+                  alignLabelWithHint: true,
+                ),
+              ),
+              const SizedBox(height: 8),
+              Align(
+                alignment: Alignment.centerRight,
+                child: FilledButton.tonal(
+                  onPressed: _saveBio,
+                  child: const Text('Save Bio'),
+                ),
+              ),
+            ] else if (user?.bio.isNotEmpty == true) ...[
+              Text(
+                user!.bio,
+                style: GoogleFonts.poppins(
+                    fontSize: 14, color: AppColors.onBackground),
+              ),
+            ] else ...[
+              Text(
+                'No bio added yet.',
+                style: GoogleFonts.poppins(
+                    fontSize: 14,
+                    color: AppColors.textSecondary,
+                    fontStyle: FontStyle.italic),
+              ),
+            ],
 
             const SizedBox(height: 24),
 

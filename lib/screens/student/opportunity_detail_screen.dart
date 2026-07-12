@@ -24,6 +24,13 @@ class _OpportunityDetailScreenState extends State<OpportunityDetailScreen> {
   bool _applying = false;
   Uint8List? _cvBytes;
   String? _cvName;
+  final _coverLetterCtrl = TextEditingController();
+
+  @override
+  void dispose() {
+    _coverLetterCtrl.dispose();
+    super.dispose();
+  }
 
   Future<void> _pickCV() async {
     final result = await FilePicker.pickFiles(
@@ -47,6 +54,12 @@ class _OpportunityDetailScreenState extends State<OpportunityDetailScreen> {
       );
       return;
     }
+    if (_coverLetterCtrl.text.trim().isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please write a short pitch/cover letter')),
+      );
+      return;
+    }
     setState(() => _applying = true);
     final auth = context.read<AuthProvider>();
     final appProvider = context.read<ApplicationProvider>();
@@ -59,6 +72,7 @@ class _OpportunityDetailScreenState extends State<OpportunityDetailScreen> {
       startupName: widget.opportunity.startupName,
       cvBytes: _cvBytes!,
       cvName: _cvName!,
+      coverLetter: _coverLetterCtrl.text.trim(),
     );
 
     if (!mounted) return;
@@ -84,18 +98,22 @@ class _OpportunityDetailScreenState extends State<OpportunityDetailScreen> {
     final missing = opps.missingSkills(opp.skills);
     final hasApplied = appProvider.hasAppliedLocally(opp.id);
 
-    return Scaffold(
-      backgroundColor: AppColors.background,
-      appBar: AppBar(
-        title: Text(opp.title),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.share_outlined),
-            onPressed: () {},
-          ),
-        ],
-      ),
-      body: SingleChildScrollView(
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      behavior: HitTestBehavior.opaque,
+      child: Scaffold(
+        backgroundColor: AppColors.background,
+        appBar: AppBar(
+          title: Text(opp.title),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.share_outlined),
+              onPressed: () {},
+            ),
+          ],
+        ),
+        body: SingleChildScrollView(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -136,6 +154,8 @@ class _OpportunityDetailScreenState extends State<OpportunityDetailScreen> {
                 _MetaChip(
                     icon: Icons.location_on_outlined, label: opp.location),
                 _MetaChip(icon: Icons.category_outlined, label: opp.category),
+                _MetaChip(
+                    icon: Icons.card_giftcard_outlined, label: opp.benefits),
               ],
             ),
 
@@ -260,6 +280,16 @@ class _OpportunityDetailScreenState extends State<OpportunityDetailScreen> {
                       ),
               ),
             ),
+            const SizedBox(height: 16),
+            if (!hasApplied)
+              TextField(
+                controller: _coverLetterCtrl,
+                maxLines: 4,
+                decoration: const InputDecoration(
+                  labelText: 'Why are you a good fit?',
+                  alignLabelWithHint: true,
+                ),
+              ),
             const SizedBox(height: 32),
           ],
         ),
@@ -280,6 +310,7 @@ class _OpportunityDetailScreenState extends State<OpportunityDetailScreen> {
                   child: Text(hasApplied ? 'Applied' : 'Apply Now'),
                 ),
         ),
+      ),
       ),
     );
   }

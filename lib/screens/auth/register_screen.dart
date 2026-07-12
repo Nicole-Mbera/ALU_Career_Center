@@ -80,7 +80,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   style: Theme.of(context).textTheme.displayLarge),
               const SizedBox(height: 8),
               Text(
-                'Join the ALU Ventures ecosystem',
+                'Join the ALU Career Center ecosystem',
                 style: GoogleFonts.poppins(
                     fontSize: 14, color: AppColors.textSecondary),
               ),

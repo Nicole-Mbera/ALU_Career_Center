@@ -8,6 +8,7 @@ class ApplicationModel {
   final String opportunityTitle;
   final String startupName;
   final String cvUrl;
+  final String coverLetter;
   final String status; // 'applied' | 'under_review' | 'shortlisted' | 'accepted' | 'closed'
   final DateTime appliedAt;
 
@@ -19,6 +20,7 @@ class ApplicationModel {
     required this.opportunityTitle,
     required this.startupName,
     required this.cvUrl,
+    required this.coverLetter,
     required this.status,
     required this.appliedAt,
   });
@@ -33,6 +35,7 @@ class ApplicationModel {
       opportunityTitle: data['opportunityTitle'] ?? '',
       startupName: data['startupName'] ?? '',
       cvUrl: data['cvUrl'] ?? '',
+      coverLetter: data['coverLetter'] ?? '',
       status: data['status'] ?? 'applied',
       appliedAt: (data['appliedAt'] as Timestamp?)?.toDate() ?? DateTime.now(),
     );
@@ -45,6 +48,7 @@ class ApplicationModel {
         'opportunityTitle': opportunityTitle,
         'startupName': startupName,
         'cvUrl': cvUrl,
+        'coverLetter': coverLetter,
         'status': status,
         'appliedAt': Timestamp.fromDate(appliedAt),
       };

@@ -21,6 +21,13 @@ class FirestoreService {
   Future<void> updateUserSkills(String uid, List<String> skills) =>
       _db.collection('users').doc(uid).update({'skills': skills});
 
+  Future<void> updateUserProfile(String uid, {String? bio, List<String>? skills}) {
+    final data = <String, dynamic>{};
+    if (bio != null) data['bio'] = bio;
+    if (skills != null) data['skills'] = skills;
+    return _db.collection('users').doc(uid).update(data);
+  }
+
   Future<void> toggleBookmark(String uid, String oppId, bool isBookmarked) =>
       _db.collection('users').doc(uid).update({
         'bookmarkedOppIds': isBookmarked

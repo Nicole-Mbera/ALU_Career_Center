@@ -101,6 +101,12 @@ class AuthProvider extends ChangeNotifier {
     refreshUser();
   }
 
+  Future<void> updateProfile({String? bio, List<String>? skills}) async {
+    if (_user == null) return;
+    await _db.updateUserProfile(_user!.uid, bio: bio, skills: skills);
+    refreshUser();
+  }
+
   String _authError(String code) {
     switch (code) {
       case 'email-already-in-use':

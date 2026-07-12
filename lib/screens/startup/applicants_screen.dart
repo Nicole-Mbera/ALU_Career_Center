@@ -22,7 +22,16 @@ class ApplicantsScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: AppColors.background,
-      appBar: AppBar(title: Text('Applicants — ${opportunity.title}')),
+      appBar: AppBar(
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text('Applicants'),
+            Text(opportunity.title,
+                style: const TextStyle(fontSize: 14, fontWeight: FontWeight.normal)),
+          ],
+        ),
+      ),
       body: applicants.isEmpty
           ? const Center(
               child: Text('No applicants yet',
@@ -127,11 +136,11 @@ class _ApplicantCardState extends State<_ApplicantCard> {
                     ],
                   ),
                 ),
-                if (widget.application.cvUrl != null)
+                if (widget.application.cvUrl.isNotEmpty)
                   OutlinedButton.icon(
                     icon: const Icon(Icons.description_outlined, size: 16),
                     label: const Text('View CV'),
-                    onPressed: () => launchUrl(Uri.parse(widget.application.cvUrl!)),
+                    onPressed: () => launchUrl(Uri.parse(widget.application.cvUrl)),
                     style: OutlinedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(horizontal: 12),
                       minimumSize: const Size(0, 32),
@@ -139,7 +148,20 @@ class _ApplicantCardState extends State<_ApplicantCard> {
                   ),
               ],
             ),
-            const SizedBox(height: 14),
+            if (widget.application.coverLetter.isNotEmpty) ...[
+              const SizedBox(height: 16),
+              Text(
+                'Applicant Pitch:',
+                style: GoogleFonts.poppins(
+                    fontSize: 12, fontWeight: FontWeight.w600, color: AppColors.textSecondary),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                widget.application.coverLetter,
+                style: GoogleFonts.poppins(fontSize: 13, color: AppColors.onBackground),
+              ),
+            ],
+            const SizedBox(height: 16),
             Text('Update status:',
                 style: GoogleFonts.poppins(
                     fontSize: 13, fontWeight: FontWeight.w500)),

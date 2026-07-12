@@ -30,6 +30,7 @@ class ApplicationProvider extends ChangeNotifier {
     required String startupName,
     required Uint8List cvBytes,
     required String cvName,
+    required String coverLetter,
   }) async {
     final alreadyApplied = await _db.hasApplied(studentUid, opportunityId);
     if (alreadyApplied) return false;
@@ -48,6 +49,7 @@ class ApplicationProvider extends ChangeNotifier {
       opportunityTitle: opportunityTitle,
       startupName: startupName,
       cvUrl: cvUrl,
+      coverLetter: coverLetter,
       status: 'applied',
       appliedAt: DateTime.now(),
     );

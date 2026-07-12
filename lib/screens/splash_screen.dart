@@ -61,19 +61,9 @@ class _SplashScreenState extends State<SplashScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  width: 90,
-                  height: 90,
-                  decoration: BoxDecoration(
-                    color: AppColors.secondary,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: const Icon(Icons.rocket_launch,
-                      size: 50, color: AppColors.primary),
-                ),
-                const SizedBox(height: 24),
+
                 Text(
-                  'ALU Ventures',
+                  'ALU Career Center',
                   style: GoogleFonts.poppins(
                     fontSize: 32,
                     fontWeight: FontWeight.w700,

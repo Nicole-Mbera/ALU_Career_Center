@@ -65,22 +65,12 @@ class _LoginScreenState extends State<LoginScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 48),
-              Container(
-                width: 60,
-                height: 60,
-                decoration: BoxDecoration(
-                  color: AppColors.primary,
-                  borderRadius: BorderRadius.circular(14),
-                ),
-                child: const Icon(Icons.rocket_launch,
-                    color: AppColors.onPrimary, size: 32),
-              ),
-              const SizedBox(height: 32),
+
               Text('Welcome back',
                   style: Theme.of(context).textTheme.displayLarge),
               const SizedBox(height: 8),
               Text(
-                'Sign in to your ALU Ventures account',
+                'Sign in to your ALU Career Center account',
                 style: GoogleFonts.poppins(
                     fontSize: 14, color: AppColors.textSecondary),
               ),

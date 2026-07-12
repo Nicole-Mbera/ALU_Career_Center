@@ -10,6 +10,7 @@ class OpportunityModel {
   final String commitment;
   final String location;
   final String description;
+  final String benefits; // 'Stipend' | 'Paid Job' | 'Academic Internship' | 'Unpaid'
   final String status; // 'draft' | 'open' | 'closed'
   final DateTime createdAt;
 
@@ -23,6 +24,7 @@ class OpportunityModel {
     required this.commitment,
     required this.location,
     required this.description,
+    required this.benefits,
     required this.status,
     required this.createdAt,
   });
@@ -41,6 +43,7 @@ class OpportunityModel {
       commitment: data['commitment'] ?? '',
       location: data['location'] ?? '',
       description: data['description'] ?? '',
+      benefits: data['benefits'] ?? 'Unpaid',
       status: data['status'] ?? 'draft',
       createdAt: (data['createdAt'] as Timestamp?)?.toDate() ?? DateTime.now(),
     );
@@ -55,6 +58,7 @@ class OpportunityModel {
         'commitment': commitment,
         'location': location,
         'description': description,
+        'benefits': benefits,
         'status': status,
         'createdAt': Timestamp.fromDate(createdAt),
       };

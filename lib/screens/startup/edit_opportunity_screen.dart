@@ -22,6 +22,8 @@ class _EditOpportunityScreenState extends State<EditOpportunityScreen> {
   final _descCtrl = TextEditingController();
   final _skillCtrl = TextEditingController();
   String _category = 'Engineering';
+  String _benefits = 'Unpaid';
+  final _benefitsOptions = const ['Stipend', 'Paid Job', 'Academic Internship', 'Unpaid'];
   List<String> _skills = [];
   bool _loading = false;
 
@@ -33,6 +35,7 @@ class _EditOpportunityScreenState extends State<EditOpportunityScreen> {
     _locationCtrl.text = widget.opportunity.location;
     _descCtrl.text = widget.opportunity.description;
     _category = widget.opportunity.category;
+    _benefits = widget.opportunity.benefits;
     _skills = List.from(widget.opportunity.skills);
   }
 
@@ -72,6 +75,7 @@ class _EditOpportunityScreenState extends State<EditOpportunityScreen> {
             commitment: _commitmentCtrl.text.trim(),
             location: _locationCtrl.text.trim(),
             description: _descCtrl.text.trim(),
+            benefits: _benefits,
           );
       if (!mounted) return;
       Navigator.pop(context);
@@ -118,6 +122,15 @@ class _EditOpportunityScreenState extends State<EditOpportunityScreen> {
                     .map((c) => DropdownMenuItem(value: c, child: Text(c)))
                     .toList(),
                 onChanged: (v) => setState(() => _category = v!),
+              ),
+              const SizedBox(height: 16),
+              DropdownButtonFormField<String>(
+                value: _benefits,
+                decoration: const InputDecoration(labelText: 'Benefits'),
+                items: _benefitsOptions
+                    .map((b) => DropdownMenuItem(value: b, child: Text(b)))
+                    .toList(),
+                onChanged: (v) => setState(() => _benefits = v!),
               ),
               const SizedBox(height: 16),
               TextFormField(

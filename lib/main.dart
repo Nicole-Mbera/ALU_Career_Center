@@ -44,7 +44,7 @@ class ALUVenturesApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => AdminProvider()),
       ],
       child: MaterialApp(
-        title: 'ALU Ventures',
+        title: 'ALU Career Center',
         debugShowCheckedModeBanner: false,
         theme: buildAppTheme(),
         initialRoute: '/',

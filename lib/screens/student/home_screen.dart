@@ -36,7 +36,7 @@ class HomeScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Hello, $firstName 👋',
+                      'Hello, $firstName',
                       style: GoogleFonts.poppins(
                         fontSize: 22,
                         fontWeight: FontWeight.w700,
@@ -142,7 +142,7 @@ class HomeScreen extends StatelessWidget {
             else
               SliverToBoxAdapter(
                 child: SizedBox(
-                  height: 200,
+                  height: 240,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -150,7 +150,7 @@ class HomeScreen extends StatelessWidget {
                     itemBuilder: (context, i) {
                       final opp = opps.recommended[i];
                       return SizedBox(
-                        width: 280,
+                        width: 320,
                         child: Padding(
                           padding: const EdgeInsets.only(right: 12),
                           child: OpportunityCard(
